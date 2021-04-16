@@ -32,12 +32,12 @@ const UserSchema = new Schema(
       }] 
 
   },
-  // {
-  //   toJSON: {
-  //     virtuals: true
-  //   },
-  //   id: false
-  // }
+  {
+    toJSON: {
+      virtuals: true
+    },
+    id: false
+  }
 );
 
 UserSchema.virtual('friendCount').get(function() {
