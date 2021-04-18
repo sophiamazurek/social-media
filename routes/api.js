@@ -106,10 +106,49 @@ router.post("/api/thoughts", ({ body }, res) => {
 });
 
 //put /api/thoughts
+router.put("/api/thoughts/", ({ params, body }, res) => {
+  Thoughts.findOneAndUpdate({ _id: params.id }, body, { new: true })
+    .then(dbNote => {
+      if (!dbNote) {
+        res.json({ message: 'No note found with this id!' });
+        return;
+      }
+      res.json(dbNote);
+    })
+    .catch(err => {
+      res.json(err);
+    });
+  });
 //delete /api/thoughts
+router.delete("/api/thoughts/", ({ params }, res) => {
+  Thoughts.findOneAndDelete({ _id: params.id })
+    .then(dbNote => {
+      if (!dbNote) {
+        res.json({ message: 'No note found with this id!' });
+        return;
+      }
+      res.json(dbNote);
+    })
+    .catch(err => {
+      res.json(err);
+    });
+});
 
 
 // delete /api/users/:userId/friends/:friendId
+router.delete("/api/users/:userID/friends/friendId", ({ params }, res) => {
+  User.findOneAndDelete({ _id: params.id })
+    .then(dbNote => {
+      if (!dbNote) {
+        res.json({ message: 'No note found with this id!' });
+        return;
+      }
+      res.json(dbNote);
+    })
+    .catch(err => {
+      res.json(err);
+    });
+});
 
 //post /api/users/:userId/friends/:friendId
 router.post("/api/users/:userId/friends/:friendId", ({ body }, res) => {
@@ -135,6 +174,33 @@ router.post("/api/users/:userId/friends/:friendId", ({ body }, res) => {
 // });
 
 //post /api/thoughts/:thoughtId/reactions
+router.post("/api/thoughts/:thoughtId/reactions/", ({ params }, res) => {
+  Thoughts.findOneAndUpdate({ _id: params.id })
+    .then(dbNote => {
+      if (!dbNote) {
+        res.json({ message: 'No note found with this id!' });
+        return;
+      }
+      res.json(dbNote);
+    })
+    .catch(err => {
+      res.json(err);
+    });
+});
+
 //delete /api/thoughts/:thoughtId/reactions
+router.delete("/api/thoughts/:thoughtId/reactions/", ({ params }, res) => {
+  Thoughts.findOneAndDelete({ _id: params.id })
+    .then(dbNote => {
+      if (!dbNote) {
+        res.json({ message: 'No note found with this id!' });
+        return;
+      }
+      res.json(dbNote);
+    })
+    .catch(err => {
+      res.json(err);
+    });
+});
 
 module.exports = router;
