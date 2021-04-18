@@ -77,8 +77,8 @@ router.get("/api/thoughts", ({ body }, res) => {
       res.status(400).json(err);
     });
 });
-//get byid /api/thoughts
 
+//get byid /api/thoughts
 router.get("/api/thoughts/:id", (req, res) => {
   Thoughts.findById(
     { _id: req.params.id },
